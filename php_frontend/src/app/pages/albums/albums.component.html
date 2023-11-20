@@ -1,0 +1,38 @@
+<h1>Albums</h1>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item" [ngClass]="{'disabled': isFirst()}">
+            <button class="page-link" (click)="prev()">{{environment.PREVIOUS}}</button>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': isLast()}">
+            <button class="page-link" (click)="next()">{{environment.NEXT}}</button>
+        </li>
+        <div *ngIf="credentialService.isLogged">
+            <li class="page-item ms-5"> <button class="btn btn-primary" routerLink="/albums/add">{{environment.ADD_ALBUM}}</button></li>
+        </div>
+    </ul>
+</nav>
+<div class="row row-cols-1 row-cols-md-5 g-4 ms-5 me-5 mt-5">
+    <div class="col" *ngFor="let album of albums">
+        <div class="card h-100">
+            <img [src]="!!album.image ? album.image : '../../assets/images/default-album.png'" class="card-img-top"
+                alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-truncate">{{album.title}}</h5>
+                <p class="card-text">{{album.year}}</p>
+                <div class="row">
+
+                    <div *ngIf="credentialService.isLogged">
+                        <button class="btn btn-info col m-1" routerLink="/album/{{album._id}}">{{environment.DETAIL}}</button>
+                        <button class="btn btn-primary col m-1" routerLink="/album/{{album._id}}/edit">{{environment.EDIT}}</button>
+                        <button class="btn btn-danger col m-1" (click)="deleteAlbum(album._id)">{{environment.DELETE}}</button>
+                    </div>
+
+                    <button *ngIf="!credentialService.isLogged" class="btn btn-light col m-2"
+                        routerLink="/album/{{album._id}}">{{environment.DETAIL}}</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

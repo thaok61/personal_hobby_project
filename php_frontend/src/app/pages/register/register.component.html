@@ -1,0 +1,27 @@
+<div class="alert alert-danger" role="alert" *ngIf="showErrorMsg">
+    {{message}}
+</div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="name" class="form-label">{{environment.NAME}}</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="mb-3">
+        <label for="gender" class="form-label">{{environment.GENDER}}</label>
+        <input type="text" class="form-control" id="gender" formControlName="gender">
+    </div>
+    <div class="mb-3">
+        <label for="username" class="form-label">{{environment.USERNAME}}</label>
+        <input type="text" class="form-control" id="username" formControlName="username">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">{{environment.PASSWORD}}</label>
+        <input type="text" class="form-control" id="password" formControlName="password">
+    </div>
+    <div class="mb-3">
+        <label for="rePassword" class="form-label">{{environment.RETYPE_PASSWORD}}</label>
+        <input type="text" class="form-control" id="rePassword" formControlName="rePassword">
+    </div>
+
+    <button class="btn btn-primary" type="submit">{{environment.REGISTER}}</button>
+</form>

@@ -1,0 +1,44 @@
+<img [src]="!!album.image ? album.image : '../../assets/images/default-album.png'" class="rounded img-thumbnail image"
+    alt="...">
+<h1>{{album.title}}</h1>
+<h2>{{album.year}}</h2>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item" [ngClass]="{'disabled': isFirst()}">
+            <button class="page-link" (click)="prev()">{{environment.PREVIOUS}}</button>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': isLast()}">
+            <button class="page-link" (click)="next()">{{environment.NEXT}}</button>
+        </li>
+        <div *ngIf="credentialService.isLogged">
+            <li class="page-item ms-5">
+                <button class="btn btn-primary" routerLink="/album/{{album._id}}/songs/add">{{environment.ADD_SONG}}</button>
+            </li>
+        </div>
+    </ul>
+</nav>
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th scope="col" colspan="4">{{environment.TITLE}}</th>
+            <th scope="col" colspan="1">{{environment.LENGTH}}</th>
+            <div *ngIf="credentialService.isLogged">
+                <th scope="col" colspan="1" class="text-end">{{environment.ACTIONS}}</th>
+            </div>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let song of songs">
+            <td colspan="4">{{song.title}}</td>
+            <td colspan="1">{{song.length}}</td>
+            <div *ngIf="credentialService.isLogged">
+                <td colspan="1" class="text-end">
+                    <button class="btn btn-outline-primary ms-1 me-1" routerLink="song/{{song._id}}/update">{{environment.EDIT}}</button>
+                    <button class="btn btn-outline-danger ms-1 me-1" (click)="deleteSong(song._id)">{{environment.DELETE}}</button>
+                </td>
+            </div>
+            
+        </tr>
+    </tbody>
+
+</table>

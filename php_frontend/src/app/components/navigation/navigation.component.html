@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/">{{environment.HOME}}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{environment.ALBUM}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <div *ngIf="credentialService.isLogged">
+                            <li><a class="dropdown-item" routerLink="/albums/add">{{environment.ADD_ALBUM}}</a></li>
+                        </div>
+                        <li><a class="dropdown-item" routerLink="/albums">{{environment.SHOW_ALBUM}}</a></li>
+                    </ul>
+                </li>
+                <div *ngIf="credentialService.isLogged">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/profile" >{{environment.PROFILE}}</a>
+                    </li>
+                </div>
+                
+                <div *ngIf="!credentialService.isLogged">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/register">{{environment.REGISTER}}</a>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div *ngIf="credentialService.isLogged">
+            Welcome {{credentialService.user.name}} <button type="button" class="btn btn-outline-primary" (click)="onLogout()">{{environment.LOGOUT}}</button>
+        </div>
+        <div *ngIf="!credentialService.isLogged">
+            <form #f="ngForm" class="d-flex" role="login" (ngSubmit)="onLogin(f)">
+                <input class="form-control me-2" type="text" placeholder={{environment.USERNAME}} aria-label="Username"
+                    name="username" ngModel>
+                <input class="form-control me-2" type="password" placeholder={{environment.PASSWORD}} aria-label="Password"
+                    name="password" ngModel>
+                <button class="btn btn-outline-success" type="submit">{{environment.LOGIN}}</button>
+            </form>
+        </div>
+
+    </div>
+</nav>
+<div class="alert alert-success" role="alert" *ngIf="showSuccessMsg">
+    {{environment.LOGIN_SUCCESS}}
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="showFailMsg">
+   {{environment.LOGIN_FAIL}}
+</div>

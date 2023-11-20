@@ -1,0 +1,14 @@
+{
+  "name": "php",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "startBackend": "cd php_backend && npm start",
+    "startFrontend": "cd php_frontend && npm start",
+    "start": "npm run startBackend | npm run startFrontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

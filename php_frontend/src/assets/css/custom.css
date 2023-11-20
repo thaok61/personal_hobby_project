@@ -1,0 +1,12 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 90px;
+}
+
+.padded {
+    padding-top: 30px;
+}

@@ -1,0 +1,19 @@
+<div class="alert alert-danger" role="alert" *ngIf="showErrorMsg">
+    {{!!albumId ? 'Update' : 'Add'}} album failed
+</div>
+<form [formGroup]="processAlbumForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="title" class="form-label">{{environment.TITLE}}</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+    </div>
+    <div class="mb-3">
+        <label for="year" class="form-label">{{environment.YEAR}}</label>
+        <input type="text" class="form-control" id="year" formControlName="year">
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">{{environment.IMAGE}}</label>
+        <input type="text" class="form-control" id="image" formControlName="image">
+    </div>
+
+    <button class="btn btn-primary" type="submit">{{!!albumId ? environment.EDIT : environment.ADD_ALBUM}}</button>
+</form>

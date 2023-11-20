@@ -1,0 +1,14 @@
+<div class="alert alert-danger" role="alert" *ngIf="showErrorMsg">
+    {{!!songId ? 'Update' : 'Add'}} song failed
+</div>
+<form [formGroup]="processSongForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="title" class="form-label">{{environment.TITLE}}</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+    </div>
+    <div class="mb-3">
+        <label for="length" class="form-label">{{environment.LENGTH}}</label>
+        <input type="text" class="form-control" id="length" formControlName="length">
+    </div>
+    <button class="btn btn-primary" type="submit">{{!!songId ? environment.EDIT : environment.ADD_SONG}}</button>
+</form>
